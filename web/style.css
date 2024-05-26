@@ -1,0 +1,37 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  padding: 2rem;
+}
+
+table {
+  width: 300px;
+  border-collapse: collapse; /* Ensures that the borders between cells are merged */
+  margin: 20px 0; /* Adds some spacing around the table */
+}
+
+th,
+td {
+  border: 1px solid #ccc; /* Grey borders */
+  padding: 8px; /* Padding inside cells */
+  text-align: left; /* Aligns text to the left; adjust as needed */
+}
+
+th {
+  background-color: #f4f4f4; /* Light grey background for headers */
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: normal;
+}
+
+label {
+  width: 50px;
+  font-weight: bold;
+}
+
+h2 {
+  margin: 0;
+}
+
+#connect {
+  margin: 2rem 0;
+}
