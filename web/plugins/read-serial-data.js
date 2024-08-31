@@ -124,7 +124,7 @@ function roundToNearestTenth(number) {
 }
 
 function processSerialData(data) {
-  window["PM001"] = [];
+  window["PrototypeA1"] = [];
   let string = new TextDecoder().decode(data);
 
   if (string) {
@@ -135,7 +135,7 @@ function processSerialData(data) {
         let labelValuePair = dataString.split("=");
         let label = labelValuePair[0];
         let value;
-        window["PM001"][label] = {};
+        window["PrototypeA1"][label] = {};
         let backgroundColor;
         let textColor;
         if (label.includes("button_")) {
@@ -167,7 +167,7 @@ function processSerialData(data) {
 }
 
 function updateWindowVariable(label, value, backgroundColor, textColor) {
-  window["PM001"][label] = {
+  window["PrototypeA1"][label] = {
     value: value,
     backgroundColor: backgroundColor,
     textColor: textColor,
