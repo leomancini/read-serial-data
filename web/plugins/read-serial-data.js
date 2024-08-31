@@ -115,6 +115,14 @@ function convertRange(value, r1, r2) {
   return ((value - r1[0]) * (r2[1] - r2[0])) / (r1[1] - r1[0]) + r2[0];
 }
 
+function exponentialMovingAverage(newValue, previousEMA, alpha) {
+  return alpha * newValue + (1 - alpha) * previousEMA;
+}
+
+function roundToNearestTenth(number) {
+  return Math.round(number);
+}
+
 function processSerialData(data) {
   window["PM001"] = [];
   let string = new TextDecoder().decode(data);
@@ -135,13 +143,20 @@ function processSerialData(data) {
           backgroundColor = value ? "black" : "white";
           textColor = value ? "white" : "black";
         } else if (label.includes("potentiometer_")) {
-          value = parseInt(labelValuePair[1]);
+          // value = round(parseInt(labelValuePair[1]));
+          rawValue = parseFloat(labelValuePair[1]);
+          if (label === "potentiometer_4") {
+            value0to100 = convertRange(rawValue, [0, 1023], [0, 100]);
+          } else {
+            value0to100 = convertRange(rawValue, [0, 1023], [100, 0]);
+          }
+          value = roundToNearestTenth(value0to100);
           backgroundColor = `rgba(0, 0, 0, ${convertRange(
             value,
-            [0, 1023],
+            [0, 100],
             [0, 1]
           )})`;
-          let textColorValue = convertRange(value, [0, 1023], [0, 255]);
+          let textColorValue = convertRange(value, [0, 100], [0, 255]);
           textColor = `rgb(${textColorValue},${textColorValue},${textColorValue})`;
         }
 
